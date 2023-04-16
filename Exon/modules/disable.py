@@ -45,11 +45,6 @@ from Exon import dispatcher
 from Exon.modules.helper_funcs.handlers import CMD_STARTERS, SpamChecker
 from Exon.modules.helper_funcs.misc import is_module_loaded
 
-try:
-    from Exon.modules.language import gs
-except ImportError as e:
-    print(e)
-
 FILENAME = __name__.rsplit(".", 1)[-1]
 
 
@@ -335,7 +330,7 @@ if is_module_loaded(FILENAME):
         )
 
     def __stats__():
-        return f"× {sql.num_disabled()} disabled items, across {sql.num_chats()} chats."
+        return f"× {sql.num_disabled()} ᴅɪsᴀʙʟᴇᴅ ɪᴛᴇᴍs, ᴀᴄʀᴏss {sql.num_chats()} ᴄʜᴀᴛs."
 
     def __migrate__(old_chat_id, new_chat_id):
         sql.migrate_chat(old_chat_id, new_chat_id)
@@ -360,6 +355,8 @@ if is_module_loaded(FILENAME):
     dispatcher.add_handler(ENABLE_MODULE_HANDLER)
     dispatcher.add_handler(COMMANDS_HANDLER)
     dispatcher.add_handler(TOGGLE_HANDLER)
+
+    from Exon.modules.language import gs  # ɪғ ɢᴏᴛ ᴇʀʀᴏʀ -ʀᴇᴍᴏᴠᴇ ᴛʜɪs ʟɪɴᴇ
 
     def get_help(chat):
         return gs(chat, "disable_help")
